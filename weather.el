@@ -67,7 +67,7 @@
             (assoc-get 'temp_f summary)
             (assoc-get 'relative_humidity summary)
             (assoc-get 'wind_string summary)
-            (format-time-string "%k:%M:%S" (seconds-to-time (string-to-int (assoc-get 'local_epoch summary)))))))
+            (format-time-string "%k:%M:%S" (seconds-to-time (string-to-number (assoc-get 'local_epoch summary)))))))
 
 (defun format-summary (weather-data)
   (let* ((summary (assoc-get 'current_observation weather-data))
@@ -76,7 +76,7 @@
     (concat (propertize (concat " "city " Weather ") 'font-lock-face 'weather-title-face)
             "\n\n"
             (propertize (concat "Current conditions (retrieved "
-                                (format-time-string "%A %k:%M:%S" (seconds-to-time (string-to-int (assoc-get 'local_epoch summary))))
+                                (format-time-string "%A %k:%M:%S" (seconds-to-time (string-to-number (assoc-get 'local_epoch summary))))
                                 ")") 'font-lock-face 'weather-heading-face)
             (format "\n%s\nTemp %dF\nHumidity %s\nPrecipitation rate %s in/hr\nWind %s\n"
                     (assoc-get 'weather summary)
